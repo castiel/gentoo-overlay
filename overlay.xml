@@ -1,0 +1,20 @@
+<?xml version="1.0" ?>
+<layman>
+  <overlay
+     type = "git"
+     src  = "git://github.com/castiel/gentoo-overlay.git"
+     name = "castiel"
+     status = "unofficial"
+     contact = "mark@burazin.net">
+
+    <link>
+      http://burazin.net/
+    </link>
+
+    <description>
+      A Gentoo overlay with a few cutting edge ebuilds,
+	mostly server stuff
+    </description>
+  </overlay>
+</layman>
+
