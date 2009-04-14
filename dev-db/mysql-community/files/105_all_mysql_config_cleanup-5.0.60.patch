@@ -1,0 +1,46 @@
+diff -Nuar mysql.orig/scripts/mysql_config.sh mysql/scripts/mysql_config.sh
+--- mysql.orig/scripts/mysql_config.sh	2008-04-28 15:30:02.000000000 -0700
++++ mysql/scripts/mysql_config.sh	2008-05-28 19:41:08.707892615 -0700
+@@ -121,22 +121,28 @@
+ include="-I$pkgincludedir"
+ 
+ # Remove some options that a client doesn't have to care about
+-# FIXME until we have a --cxxflags, we need to remove -Xa
+-#       and -xstrconst to make --cflags usable for Sun Forte C++
+-# FIXME until we have a --cxxflags, we need to remove -AC99
+-#       to make --cflags usable for HP C++ (aCC)
+-for remove in DDBUG_OFF DSAFEMALLOC USAFEMALLOC DSAFE_MUTEX \
+-              DPEDANTIC_SAFEMALLOC DUNIV_MUST_NOT_INLINE DFORCE_INIT_OF_VARS \
+-              DEXTRA_DEBUG DHAVE_purify O 'O[0-9]' 'xO[0-9]' 'W[-A-Za-z]*' \
+-              'mtune=[-A-Za-z0-9]*' 'mcpu=[-A-Za-z0-9]*' 'march=[-A-Za-z0-9]*' \
+-              Xa xstrconst "xc99=none" AC99 \
+-              unroll2 ip mp restrict
++tmpcflags=""
++for f in $cflags
+ do
+-  # The first option we might strip will always have a space before it because
+-  # we set -I$pkgincludedir as the first option
+-  cflags=`echo "$cflags"|sed -e "s/ -$remove  */ /g"` 
++  case "${f}" in
++    -DDBUG_OFF) f="" ;;
++    -DSAFEMALLOC) f="" ;;
++    -USAFEMALLOC) f="" ;;
++    -DSAFE_MUTEX) f="" ;;
++    -DPEDANTIC_SAFEMALLOC) f="" ;;
++    -DUNIV_MUST_NOT_INLINE) f="" ;;
++    -DFORCE_INIT_OF_VARS) f="" ;;
++    -DEXTRA_DEBUG) f="" ;;
++    -DHAVE_purify) f="" ;;
++    -[ID]*) tmpcflags="${tmpcflags} ${f}" ;;
++    -[Ll]*)
++      libs="${libs} ${f}"
++      libs_r="${libs_r} ${f}"
++      embedded_libs="${embedded_libs} ${f}"
++    ;;
++  esac
+ done
+-cflags=`echo "$cflags"|sed -e 's/ *\$//'` 
++cflags="${tmpcflags# }"
+ 
+ # Same for --libs(_r)
+ for remove in lmtmalloc static-libcxa i-static static-intel
