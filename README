@@ -1,2 +1,5 @@
 A Gentoo portage overlay
 
+/etc/layman/layman.cfg add this: (second line)
+overlays  : http://www.gentoo.org/proj/en/overlays/layman-global.txt
+            http://github.com/castiel/gentoo-overlay/tree/master/overlay.xml?raw=true
