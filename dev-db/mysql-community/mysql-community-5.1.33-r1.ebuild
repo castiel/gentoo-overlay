@@ -127,7 +127,7 @@ src_compile() {
                 --localstatedir="${MY_LOCALSTATEDIR}" \
                 --sharedstatedir="${MY_SHAREDSTATEDIR}" \
                 --libdir="${MY_LIBDIR}" \
-                --includedir="${MY_INCLUDEDIR}" \
+                --includedir="/usr/include" \
                 --with-low-memory \
                 --with-client-ldflags=-lstdc++ \
                 --enable-thread-safe-client \
