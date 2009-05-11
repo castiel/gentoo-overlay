@@ -1,5 +1,9 @@
-A Gentoo portage overlay
+emerge layman (if you don't have it yet)
 
-/etc/layman/layman.cfg add this: (second line)
+Edit /etc/layman/layman.cfg and add this: (second line)
 overlays  : http://www.gentoo.org/proj/en/overlays/layman-global.txt
             http://github.com/castiel/gentoo-overlay/tree/master/overlay.xml?raw=true
+
+layman -a castiel
+
+then you can emerge anything from the castiel overlay
