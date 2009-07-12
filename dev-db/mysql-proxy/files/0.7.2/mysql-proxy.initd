@@ -1,0 +1,45 @@
+#!/sbin/runscript
+# Copyright 1999-2009 Gentoo Foundation
+# Distributed under the terms of the GNU General Public License v2
+
+CONF="${SVCNAME#*.}"
+CONFBASE="/etc/conf.d/mysql-proxy"
+
+[ -z "${PIDBASE}" ] && PIDBASE="/var/run/mysql-proxy"
+[ "${CONF}" == "mysql-proxy" ] && CONF=''
+
+if [ -n "${CONF}" ]; then
+        PIDFILE="${PIDBASE}-${PORT}.${CONF}.pid"
+        CONFSRC="${CONFBASE}.${CONF}"
+        if [ -f "${CONFSRC}" ]; then
+         source "${CONFSRC}"
+        else
+         eerror "The configuration file $CONFSRC was not found!"
+        fi
+else
+        PIDFILE="${PIDBASE}-${PORT}.pid"
+        CONFSRC="${CONFBASE}"
+fi
+
+depend() {
+	need net
+}
+
+start() {
+	ebegin "Starting MySQL Proxy ${CONF}"
+	start-stop-daemon --start --quiet --exec /usr/sbin/mysql-proxy -- --daemon \
+		--pid-file="${PIDFILE}" \
+ 		--log-level=${LOG_LEVEL} \
+		--log-file=/var/log/mysql/mysq-proxy${CONF}.log \
+		--proxy-address=${PROXY_ADDRESS} \
+		--admin-address=${ADMIN_ADDRESS} \
+		${OPTS}
+	
+	eend $?
+}
+
+stop() {
+	ebegin "Stopping MySQL Proxy ${CONF}"
+	start-stop-daemon --stop --quiet --pidfile "${PIDFILE}"
+	eend $?
+}

@@ -1,0 +1,24 @@
+# /etc/conf.d/mysql-proxy: config file for /etc/init.d/mysql-proxy
+
+#PID file location
+# '-${PORT}.${CONF}.pid' will be appended to this!
+# You do not normally need to change this.
+PIDBASE="/var/run/mysql-proxy"
+
+# if you want mysql-proxy to depend on mysql, enable this:
+#RC_NEED="mysql"
+
+# (error|warning|info|message|debug)      log all messages of level ... or higer
+LOG_LEVEL="warning"
+
+# Where mysql will listen on
+PROXY_ADDRESS="127.0.0.1:3307"
+ADMIN_ADDRESS="127.0.0.1:4042"
+
+# general options for mysql-proxy
+#OPTS="--proxy-lua-script=/usr/share/doc/mysql-proxy-0.6.0/tutorial-basic.lua"
+#OPTS="--proxy-read-only-backend-addresses=127.0.0.1:3306 --proxy-backend-addresses=10.10.3.10:3306 --proxy-lua-script=/usr/lib64/mysql-proxy/lua/rw-splittingcv.lua"
+OPTS=""
+
+
+

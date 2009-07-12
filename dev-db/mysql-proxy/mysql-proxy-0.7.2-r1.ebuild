@@ -25,7 +25,25 @@ src_compile() {
 }
 src_install() {
     emake -j1 DESTDIR="${D}" install
-    dodoc ${MYDOC}
+	if useq lua; then
+		insinto /usr/$(get_libdir)/${PN}/lua/
+		doins lib/*.lua
+#		doins lib/.libs/lpeg.so
+		doins "${FILESDIR}/${PV}/rw-splittingcv.lua"
+#		insinto /usr/${LIBDIR}/${PN}/lua/proxy
+#		doins lib/proxy/*.lua
+#		insinto /usr/share/${PN}
+#		doins lib/*.lua
+#		insinto /usr/share/${PN}/proxy
+#		doins lib/proxy/*.lua
+		if useq examples; then
+			insinto /usr/share/${PN}/examples
+			doins examples/*.lua
+		fi
+	fi
+	dodoc README INSTALL NEWS
+	newinitd "${FILESDIR}/${PV}/${PN}.initd" ${PN}
+	newconfd "${FILESDIR}/${PV}/${PN}.confd" ${PN}
 }
 
 ssrc_install() {
@@ -38,24 +56,6 @@ ssrc_install() {
 	doins plugins/admin/.libs/libadmin.so
 	doins plugins/debug/.libs/libdebug.so
 	doins plugins/proxy/.libs/libproxy.so
-	if useq lua; then
-		insinto /usr/lib/mysql-proxy/lua/
-		doins lib/*.lua
-		doins lib/.libs/lpeg.so
-		insinto /usr/lib/mysql-proxy/lua/proxy
-		doins lib/proxy/*.lua
-		insinto /usr/share/${PN}
-		doins lib/*.lua
-		insinto /usr/share/${PN}/proxy
-		doins lib/proxy/*.lua
-		if useq examples; then
-			insinto /usr/share/${PN}/examples
-			doins examples/*.lua
-		fi
-	fi
-	dodoc README INSTALL NEWS
-	newinitd "${FILESDIR}/${PV}/${PN}.initd" ${PN}
-	newconfd "${FILESDIR}/${PV}/${PN}.confd" ${PN}
 }
 
 pkg_postinst() {
