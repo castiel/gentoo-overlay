@@ -12,12 +12,12 @@ PIDBASE="/var/run/mysql-proxy"
 LOG_LEVEL="warning"
 
 # Where mysql will listen on
-PROXY_ADDRESS="127.0.0.1:3307"
+PROXY_ADDRESS="127.0.0.1:3306"
 ADMIN_ADDRESS="127.0.0.1:4042"
 
 # general options for mysql-proxy
 #OPTS="--proxy-lua-script=/usr/share/doc/mysql-proxy-0.6.0/tutorial-basic.lua"
-#OPTS="--proxy-read-only-backend-addresses=127.0.0.1:3306 --proxy-backend-addresses=10.10.3.10:3306 --proxy-lua-script=/usr/lib64/mysql-proxy/lua/rw-splittingcv.lua"
+#OPTS="--proxy-read-only-backend-addresses=127.0.0.1:3307 --proxy-backend-addresses=cn.mysql.chinavasion.com:17001 --proxy-lua-script=/usr/lib64/mysql-proxy/lua/rw-splittingcv.lua"
 OPTS=""
 
 

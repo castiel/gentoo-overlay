@@ -27,12 +27,12 @@ depend() {
 
 start() {
 	ebegin "Starting MySQL Proxy ${CONF}"
-	start-stop-daemon --start --quiet --exec /usr/sbin/mysql-proxy -- --daemon \
+	start-stop-daemon --start --quiet --pidfile="${PIDFILE}" --exec /usr/sbin/mysql-proxy -- --daemon \
 		--pid-file="${PIDFILE}" \
  		--log-level=${LOG_LEVEL} \
 		--log-file=/var/log/mysql/mysq-proxy${CONF}.log \
-		--proxy-address=${PROXY_ADDRESS} \
-		--admin-address=${ADMIN_ADDRESS} \
+		--proxy-address="${PROXY_ADDRESS}" \
+		--admin-address="${ADMIN_ADDRESS}" \
 		${OPTS}
 	
 	eend $?
