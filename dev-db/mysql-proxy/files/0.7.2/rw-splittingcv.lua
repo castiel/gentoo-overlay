@@ -122,7 +122,7 @@ function connect_server()
 	if proxy.connection.backend_ndx == 0 then
 		-- we take the first slave in forced slave mode when we have at least one rw connection up.
 		if prefer_slave == true and 
-			proxy.global.backend[rw_ndx].state == BACKEND_STATE_UP then
+			proxy.global.backends[rw_ndx].state == BACKEND_STATE_UP then
 			if is_debug then
 				print("  [" .. ro_ndx .. "] taking slave as default")
 			end
