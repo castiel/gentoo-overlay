@@ -9,7 +9,7 @@ CONFBASE="/etc/conf.d/mysql-proxy"
 [ "${CONF}" == "mysql-proxy" ] && CONF=''
 
 if [ -n "${CONF}" ]; then
-        PIDFILE="${PIDBASE}-${PORT}.${CONF}.pid"
+        PIDFILE="${PIDBASE}${PORT}.${CONF}.pid"
         CONFSRC="${CONFBASE}.${CONF}"
         if [ -f "${CONFSRC}" ]; then
          source "${CONFSRC}"
@@ -27,8 +27,8 @@ depend() {
 
 start() {
 	ebegin "Starting MySQL Proxy ${CONF}"
-	start-stop-daemon --start --quiet --pidfile="${PIDFILE}" --exec /usr/sbin/mysql-proxy -- --daemon \
-		--pid-file="${PIDFILE}" \
+	start-stop-daemon --start --quiet --pidfile=${PIDFILE} --exec /usr/sbin/mysql-proxy -- --daemon \
+		--pid-file=${PIDFILE} \
  		--log-level=${LOG_LEVEL} \
 		--log-file=/var/log/mysql/mysq-proxy${CONF}.log \
 		--proxy-address="${PROXY_ADDRESS}" \
