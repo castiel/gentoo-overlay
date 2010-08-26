@@ -10,11 +10,18 @@ inherit mysql
 # only to make repoman happy. it is really set in the eclass
 IUSE="$IUSE sphinx"
 
-
-SRC_URI="${SRC_URI} http://sphinxsearch.com/downloads/sphinx-0.9.9-rc2.tar.gz"
+SPXV="sphinx-0.9.9"
+SRC_URI="${SRC_URI} http://sphinxsearch.com/downloads/${SPXV}.tar.gz"
 
 # REMEMBER: also update eclass/mysql*.eclass before committing!
 KEYWORDS="~alpha ~amd64 ~arm ~hppa ~ia64 ~ppc ~ppc64 ~s390 ~sh ~sparc ~sparc-fbsd ~x86 ~x86-fbsd"
+
+src_install() {
+	mysql_src_install
+	dodir /usr/share/php/sphinx
+	insinto /usr/share/php/sphinx
+		doins ${WORKDIR}/${SPXV}/api/sphinxapi.php
+}
 
 mysql_src_unpack() {
         # Initialize the proper variables first
@@ -26,7 +33,7 @@ mysql_src_unpack() {
 	epatch "${FILESDIR}/105_all_mysql_config_cleanup-5.0.60.patch"
 	if use sphinx ; then
 		einfo "Installing Sphinx Storage Engine ..."
-		cp -dprR ${WORKDIR}/sphinx-0.9.9-rc2/mysqlse ${WORKDIR}/mysql/storage/sphinx
+		cp -dprR ${WORKDIR}/${SPXV}/mysqlse ${WORKDIR}/mysql/storage/sphinx
 		cd ${WORKDIR}/mysql
 		einfo "BUILD/autorun.sh ..."
 		BUILD/autorun.sh 2> /dev/null 

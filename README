@@ -3,7 +3,7 @@ emerge layman (if you don't have it yet)
 Edit /etc/layman/layman.cfg and add this: (second line)
 
 overlays  : http://www.gentoo.org/proj/en/overlays/layman-global.txt
-            http://github.com/castiel/gentoo-overlay/tree/master/overlay.xml?raw=true
+	    http://github.com/castiel/gentoo-overlay/raw/master/overlay.xml
 
 Then:
 layman -L
