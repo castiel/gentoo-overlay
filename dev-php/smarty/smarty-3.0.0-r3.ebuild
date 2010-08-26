@@ -4,7 +4,7 @@
 
 inherit php-lib-r1 eutils
 
-KEYWORDS="~alpha ~amd64 ~hppa ~ppc ~ppc64 ~sparc ~x86"
+KEYWORDS="~alpha amd64 ~hppa ~ppc ~ppc64 ~sparc x86"
 
 MY_P="Smarty-3.0rc3"
 
