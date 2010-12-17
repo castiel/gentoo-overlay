@@ -6,7 +6,7 @@ inherit php-lib-r1 eutils
 
 KEYWORDS="~alpha amd64 ~hppa ~ppc ~ppc64 ~sparc x86"
 
-MY_P="smarty-3.0.4"
+MY_P="smarty-3.0.6"
 
 DESCRIPTION="A template engine for PHP."
 HOMEPAGE="http://www.smarty.net/"
