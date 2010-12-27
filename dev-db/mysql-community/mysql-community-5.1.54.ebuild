@@ -4,7 +4,7 @@
 
 #SERVER_URI="mirror://gentoo/MySQL-${PV%.*}/mysql-${PV//_/-}.tar.gz"
 PBXT_VERSION="0.9.8-beta"
-MY_EXTRAS_VER="20070916"
+MY_EXTRAS_VER="20101128-2122Z"
 
 inherit mysql
 # only to make repoman happy. it is really set in the eclass
