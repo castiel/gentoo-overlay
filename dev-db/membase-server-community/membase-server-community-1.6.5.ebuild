@@ -15,10 +15,11 @@ LICENSE="Apache-2.0"
 SLOT="0"
 KEYWORDS="~x86 ~amd64"
 IUSE=""
-	#	 >=dev-ruby/sprockets-1.0.2"
 
 RDEPEND=">=dev-libs/libevent-2.0.7
 		 >=net-misc/curl-7.20.0
+		 >=dev-lang/ruby-1.8.7
+		 >=dev-ruby/sprockets-1.0.2
 		 >=dev-lang/erlang-14"
 		 # Erlang 13.2.4 causes some strange issues with EAFNOSUPPORT errors
 DEPEND="${RDEPEND}
@@ -32,7 +33,7 @@ pkg_setup() {
 }
 
 src_prepare() {
-	epatch "${FILESDIR}"/${PV}-nowarn-bif-clash-erl-r14.diff
+	epatch "${FILESDIR}"/${PV}-mcstat-fix.diff
 }
 
 src_configure() {
