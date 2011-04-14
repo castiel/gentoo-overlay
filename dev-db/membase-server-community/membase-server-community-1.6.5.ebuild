@@ -10,17 +10,16 @@ MY_P="${PN}_${MY_PV}"
 
 DESCRIPTION="Distributed key-value database management system"
 HOMEPAGE="http://www.membase.org/"
-SRC_URI="http://c2512712.cdn.cloudfiles.rackspacecloud.com/${MY_P}_src.tar.gz"
-
+SRC_URI="http://files.membase.org/source/membase-server-community_${MY_PV}_src.tar.gz"
 LICENSE="Apache-2.0"
 SLOT="0"
 KEYWORDS="~x86 ~amd64"
 IUSE=""
+	#	 >=dev-ruby/sprockets-1.0.2"
 
 RDEPEND=">=dev-libs/libevent-2.0.7
-		 >=net-misc/curl-7.21.1
-		 >=dev-lang/erlang-14
-		 >=dev-ruby/sprockets-1.0.2"
+		 >=net-misc/curl-7.20.0
+		 >=dev-lang/erlang-14"
 		 # Erlang 13.2.4 causes some strange issues with EAFNOSUPPORT errors
 DEPEND="${RDEPEND}
 		>=sys-devel/gcc-4.3.0
