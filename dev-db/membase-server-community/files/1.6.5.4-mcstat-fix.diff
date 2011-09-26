@@ -1,0 +1,15 @@
+--- a/memcached/mcstat.c
++++ b/memcached/mcstat.c
+@@ -105,9 +105,9 @@ static void retry_recv(int sock, void *buf, size_t len) {
+  */
+ static void print(const char *key, int keylen, const char *val, int vallen) {
+     fputs("STAT ", stdout);
+-    fwrite(key, keylen, 1, stdout);
++    if (fwrite(key, keylen, 1, stdout)==0){}
+     fputs(" ", stdout);
+-    fwrite(val, vallen, 1, stdout);
++    if (fwrite(val, vallen, 1, stdout)==0){};
+     fputs("\n", stdout);
+     fflush(stdout);
+ }
+
