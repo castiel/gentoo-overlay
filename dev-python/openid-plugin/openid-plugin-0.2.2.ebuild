@@ -12,7 +12,7 @@ inherit distutils
 
 MY_PN=authopenid-plugin
 MY_P=${MY_PN}-${PV}
-
+S="${WORKDIR}/Dalius-${MY_PN}-v${PV}/"
 DESCRIPTION="Fork of authopenid-plugin; Support prettier account names, and better cooexistence with other login modules"
 HOMEPAGE="https://bitbucket.org/Dalius/authopenid-plugin"
 SRC_URI="https://bitbucket.org/Dalius/authopenid-plugin/get/v${PV}.tar.bz2"
@@ -24,5 +24,4 @@ IUSE=""
 DEPEND="www-apps/trac"
 RDEPEND=""
 
-S=${WORKDIR}/${MY_P}
 
