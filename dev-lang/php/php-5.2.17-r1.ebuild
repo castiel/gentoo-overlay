@@ -142,7 +142,7 @@ DEPEND=">=app-admin/eselect-php-0.6.2
 	libedit? ( || ( sys-freebsd/freebsd-lib dev-libs/libedit ) )
 	mhash? ( app-crypt/mhash )
 	mssql? ( dev-db/freetds[mssql] )
-	mysql? ( virtual/mysql dev-db/mysql-community )
+	mysql? ( || ( virtual/mysql dev-db/mysql-community ) )
 	mysqli? ( >=virtual/mysql-4.1 )
 	ncurses? ( sys-libs/ncurses )
 	nls? ( sys-devel/gettext )
