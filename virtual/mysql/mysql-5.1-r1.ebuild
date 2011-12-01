@@ -16,7 +16,7 @@ IUSE="embedded minimal static"
 DEPEND=""
 # TODO: add mysql-cluster here
 RDEPEND="|| (
-	=dev-db/mysql-${PV}*[embedded=,minimal=,static=]
 	=dev-db/mysql-community-${PV}*[embedded=,minimal=,static=]
+	=dev-db/mysql-${PV}*[embedded=,minimal=,static=]
 	=dev-db/mariadb-${PV}*[embedded=,minimal=,static=]
 )"
