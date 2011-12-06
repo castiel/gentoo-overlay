@@ -15,10 +15,11 @@ BUILD="autotools"
 
 inherit toolchain-funcs mysql-v2
 
-SPXV="sphinx-0.9.9"
+SPXV="sphinx-2.0.2-beta"
 SRC_URI="${SRC_URI} http://sphinxsearch.com/files/${SPXV}.tar.gz"
 # only to make repoman happy. it is really set in the eclass
-IUSE="$IUSE sphinx"
+#IUSE="$IUSE sphinx"
+IUSE="big-tables debug embedded minimal +perl selinux -ssl static test sphinx"
 
 # REMEMBER: also update eclass/mysql*.eclass before committing!
 KEYWORDS="~alpha amd64 ~arm ~hppa ~ia64 ~mips ~ppc ~ppc64 ~s390 ~sh ~sparc x86 ~sparc-fbsd ~x86-fbsd ~ppc-macos ~x64-macos ~x86-solaris"
@@ -33,7 +34,7 @@ DEPEND="|| ( >=sys-devel/gcc-3.4.6 >=sys-devel/gcc-apple-4.0 )
 RDEPEND="${RDEPEND}"
 
 src_install() {
-        mysql_src_install
+        mysql-v2_src_install
         dodir /usr/share/php/sphinx
         insinto /usr/share/php/sphinx
                 doins ${WORKDIR}/${SPXV}/api/sphinxapi.php
@@ -47,19 +48,19 @@ src_prepare() {
 	sed -i \
 		-e '/^noinst_PROGRAMS/s/basic-t//g' \
 		"${S}"/unittest/mytap/t/Makefile.am
-       if use sphinx ; then
-                einfo "Installing Sphinx Storage Engine ..."
-		einfo ${WORKDIR}/${SPXV}/mysqlse
-		einfo ${WORKDIR}/mysql/storage/sphinx
-		einfo "-----------------------------"
-                cp -dprR ${WORKDIR}/${SPXV}/mysqlse ${WORKDIR}/mysql/storage/sphinx
-                cd ${WORKDIR}/mysql
-                einfo "BUILD/autorun.sh ..."
+	if use sphinx ; then
+		if use ssl ; then
+			eerror "You can't use ssl and sphinx use flags at the same time"
+			eerror "Please add 'dev-db/mysql -ssl' in /etc/portage/package.use"
+		fi
+		einfo "Installing Sphinx Storage Engine ..."
+		cp -dprR ${WORKDIR}/${SPXV}/mysqlse ${WORKDIR}/mysql/storage/sphinx
+		cd ${WORKDIR}/mysql
+		einfo "BUILD/autorun.sh ..."
 		automake --add-missing --force  --copy storage/sphinx/Makefile
-                BUILD/autorun.sh 
+#		BUILD/autorun.sh 
+	fi
 	mysql-v2_src_prepare
-#                BUILD/autorun.sh 2> /dev/null 
-        fi
 }
 
 # Official test instructions:
