@@ -15,7 +15,7 @@ BUILD="autotools"
 
 inherit toolchain-funcs mysql-v2
 
-SPXV="sphinx-2.0.2-beta"
+SPXV="sphinx-0.9.9"
 SRC_URI="${SRC_URI} http://sphinxsearch.com/files/${SPXV}.tar.gz"
 # only to make repoman happy. it is really set in the eclass
 IUSE="$IUSE sphinx"
