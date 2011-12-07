@@ -31,8 +31,7 @@ EPATCH_EXCLUDE=''
 # Most of these are in the eclass
 DEPEND="|| ( >=sys-devel/gcc-3.4.6 >=sys-devel/gcc-apple-4.0 )
 		>=sys-devel/libtool-2.2.10"
-RDEPEND="${RDEPEND} 
-	sphinx? ( >=app-misc/sphinx-2.0.2_beta )"
+RDEPEND="${RDEPEND}"
 
 src_install() {
         mysql-v2_src_install
