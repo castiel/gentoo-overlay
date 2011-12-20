@@ -13,7 +13,7 @@ inherit eutils autotools flag-o-matic versionator depend.apache apache-module db
 SUHOSIN_VERSION="5.2.16-0.9.7"
 EXPECTED_TEST_FAILURES=""
 
-KEYWORDS="alpha amd64 arm hppa ia64 ppc ppc64 s390 sh sparc x86"
+KEYWORDS="~alpha ~amd64 ~arm ~hppa ~ia64 ~ppc ~ppc64 ~s390 ~sh ~sparc ~x86"
 
 function php_get_uri ()
 {
