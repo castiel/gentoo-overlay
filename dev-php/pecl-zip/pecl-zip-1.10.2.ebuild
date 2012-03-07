@@ -9,12 +9,14 @@ PHP_EXT_PECL_PKG="zip"
 PHP_EXT_NAME="zip"
 PHP_EXT_INI="yes"
 
+USE_PHP="php5-2 php5-3 php5-4"
+
 inherit php-ext-pecl-r2
 
 IUSE=""
 DESCRIPTION="PHP zip management extension."
 SLOT="0"
-LICENSE="PHP"
+LICENSE="PHP-3"
 KEYWORDS="~alpha amd64 ~arm ~hppa ~ia64 ~ppc ~ppc64 ~s390 ~sh ~sparc x86"
 DEPEND="${DEPEND}
 		sys-libs/zlib"
