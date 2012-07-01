@@ -16,7 +16,7 @@ SRC_URI="http://phantomjs.googlecode.com/files/${P}-source.zip"
 
 LICENSE="GPL-3"
 SLOT="0"
-KEYWORDS=""
+KEYWORDS="amd64 x86"
 IUSE="examples python"
 
 RDEPEND="x11-libs/qt-webkit
