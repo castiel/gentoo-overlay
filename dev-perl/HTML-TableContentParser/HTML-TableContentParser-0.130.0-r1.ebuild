@@ -11,7 +11,7 @@ inherit perl-module
 DESCRIPTION="Parse the content of tables in HTML"
 
 SLOT="0"
-KEYWORDS="~amd64 x86"
+KEYWORDS="amd64 x86"
 IUSE=""
 
 RDEPEND="dev-perl/HTML-Parser"
