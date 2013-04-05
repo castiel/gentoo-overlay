@@ -5,7 +5,7 @@
 EAPI="2"
 
 MODULE_AUTHOR="FRIEDO"
-SRC_URI="http://puppet.silverlineweb.com/${P}.tar.gz"
+
 
 inherit perl-module
 
@@ -30,3 +30,8 @@ DEPEND="dev-perl/DateTime
 	dev-perl/Test-Warn
 	dev-perl/JSON
 	dev-lang/perl"
+
+src_prepare() {
+        epatch "${FILESDIR}"/PERL-196.patch
+}
+

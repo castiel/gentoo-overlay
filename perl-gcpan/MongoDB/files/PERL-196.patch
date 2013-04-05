@@ -1,0 +1,25 @@
+From 21577ff0dabeeb71dc88b05a370bc2a92cd5fb3e Mon Sep 17 00:00:00 2001
+From: nightlord <zzh_621@yahoo.com>
+Date: Mon, 14 Jan 2013 19:49:42 -0800
+Subject: [PATCH] Socket timeout set incorrectly PERL-196
+
+---
+ mongo_link.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/mongo_link.c b/mongo_link.c
+index 5441075..3fe0d4f 100644
+--- a/mongo_link.c
++++ b/mongo_link.c
+@@ -32,7 +32,7 @@ static void set_timeout(int socket, time_t timeout) {
+   const char *tv_ptr = (const char*)&tv;
+ #else
+   struct timeval tv;
+-  tv.tv_sec = 1;
++  tv.tv_sec = timeout;
+   tv.tv_usec = 0;
+   const void *tv_ptr = (void*)&tv;
+ #endif
+-- 
+1.8.1.5
+
