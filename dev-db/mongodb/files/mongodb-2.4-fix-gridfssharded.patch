@@ -1,0 +1,30 @@
+diff --git a/jstests/sharding/gridfs.js b/jstests/sharding/gridfs.js
+index 2e283c8..cc82176 100644
+--- a/jstests/sharding/gridfs.js
++++ b/jstests/sharding/gridfs.js
+@@ -56,6 +56,12 @@ test.adminCommand({enablesharding: name})
+ test.adminCommand({shardcollection: name+'.fs.chunks', key: {files_id:1}})
+ testGridFS(name)
+ 
++print('\n\n\t**** sharded collection on files_id (hashed) ****\n\n')
++name = 'sharded_files_id_hashed'
++test.adminCommand({enablesharding: name})
++test.adminCommand({shardcollection: name+'.fs.chunks', key: {files_id:'hashed'}})
++testGridFS(name)
++
+ print('\n\n\t**** sharded collection on files_id,n ****\n\n')
+ name = 'sharded_files_id_n'
+ test.adminCommand({enablesharding: name})
+diff --git a/src/mongo/s/commands_public.cpp b/src/mongo/s/commands_public.cpp
+index 723fccd..d63b468 100644
+--- a/src/mongo/s/commands_public.cpp
++++ b/src/mongo/s/commands_public.cpp
+@@ -1085,7 +1085,7 @@
+ 
+                 ChunkManagerPtr cm = conf->getChunkManager( fullns );
+                 massert( 13091 , "how could chunk manager be null!" , cm );
+-                if(cm->getShardKey().key() == BSON("files_id" << 1)) {
++                if( cm->getShardKey().key() == BSON("files_id" << 1) || cm->getShardKey().key() == BSON("files_id" << "hashed") ) {
+                     BSONObj finder = BSON("files_id" << cmdObj.firstElement());
+ 
+                     map<Shard, BSONObj> resMap;
