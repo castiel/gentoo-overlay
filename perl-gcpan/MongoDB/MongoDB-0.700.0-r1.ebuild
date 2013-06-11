@@ -32,6 +32,6 @@ DEPEND="dev-perl/DateTime
 	dev-lang/perl"
 
 src_prepare() {
-        epatch "${FILESDIR}"/gridfs-perl-patch.patch
+        epatch "${FILESDIR}"/gridfs-perl-patch.diff
 }
 
