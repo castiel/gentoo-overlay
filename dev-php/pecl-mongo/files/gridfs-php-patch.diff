@@ -1,0 +1,12 @@
+diff --git a/gridfs/gridfs.c b/gridfs/gridfs.c
+index 1d43fd5..1830a47 100644
+--- a/gridfs/gridfs.c
++++ b/gridfs/gridfs.c
+@@ -159,7 +159,6 @@ void php_mongo_ensure_gridfs_index(zval *return_value, zval *this_ptr TSRMLS_DC)
+ 
+ 	MAKE_STD_ZVAL(options);
+ 	array_init(options);
+-	add_assoc_bool(options, "unique", 1);
+ 	add_assoc_bool(options, "dropDups", 1);
+ 
+ 	MONGO_METHOD2(MongoCollection, ensureIndex, return_value, getThis(), index, options);
