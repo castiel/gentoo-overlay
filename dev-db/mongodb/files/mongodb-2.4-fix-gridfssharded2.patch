@@ -1,0 +1,13 @@
+diff --git a/src/mongo/client/gridfs.cpp b/src/mongo/client/gridfs.cpp
+index e2d1038..2ec9b37 100644
+--- a/src/mongo/client/gridfs.cpp
++++ b/src/mongo/client/gridfs.cpp
+@@ -58,7 +58,7 @@ namespace mongo {
+         _chunkSize = DEFAULT_CHUNK_SIZE;
+ 
+         client.ensureIndex( _filesNS , BSON( "filename" << 1 ) );
+-        client.ensureIndex( _chunksNS , BSON( "files_id" << 1 << "n" << 1 ) , /*unique=*/true );
++        client.ensureIndex( _chunksNS , BSON( "files_id" << 1 << "n" << 1 ) );
+     }
+ 
+     GridFS::~GridFS() {
