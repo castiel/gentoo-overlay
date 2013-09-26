@@ -11,7 +11,8 @@ DAEMON_OPTS="$DAEMON_OPTS -Des.path.work=$WORK_DIR"
 DAEMON_OPTS="$DAEMON_OPTS -Des.path.conf=$CONF_DIR"
 DAEMON_OPTS="$DAEMON_OPTS -Des.network.bind_host=$BIND"
 DAEMON_OPTS="$DAEMON_OPTS -Des.cluster.name=$CLUSTER"
-
+export ES_MIN_MEM
+export ES_MAX_MEM
 export ES_CLASSPATH=":/usr/share/elasticsearch/lib/elasticsearch-0.90.5.jar:/usr/share/elasticsearch/lib/*:/usr/share/elasticsearch/lib/sigar/*"
 
 depend() {
