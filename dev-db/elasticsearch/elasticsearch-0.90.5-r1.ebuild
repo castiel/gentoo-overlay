@@ -14,7 +14,7 @@ IUSE=""
 RDEPEND=" >=virtual/jre-1.6 "
 ES_INSTALL_DIR="/usr/share/elasticsearch"
 
-pkg_preinst() {
+pkg_setup() {
 	enewgroup elastic
 	enewuser elastic -1 -1 /dev/null elastic	
 }
