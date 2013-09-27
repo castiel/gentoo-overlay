@@ -29,8 +29,13 @@ checkconfig() {
 start() {
 	checkconfig || return 1
 	ebegin "Starting elasticsearch"
-	mkdir -p $LOG_DIR $DATA_DIR $WORK_DIR
-    	start-stop-daemon --start --pidfile $PID_FILE --exec $DAEMON -- $DAEMON_OPTS 
+	if [ ! -d "$DATA_DIR" ]; then
+		mkdir -p $LOG_DIR $DATA_DIR $WORK_DIR
+		chown elastic:elastic $DATA_DIR
+		chown elastic:elastic $WORK_DIR
+		chown elastic:elastic $LOG_DIR
+	fi
+    	start-stop-daemon --start --pidfile $PID_FILE --user elastic --exec $DAEMON -- $DAEMON_OPTS 
 	eend $?
 }
 

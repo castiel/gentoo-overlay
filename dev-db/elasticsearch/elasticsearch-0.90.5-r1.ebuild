@@ -14,6 +14,10 @@ IUSE=""
 RDEPEND=" >=virtual/jre-1.6 "
 ES_INSTALL_DIR="/usr/share/elasticsearch"
 
+pkg_preinst() {
+	enewgroup elastic
+	enewuser elastic -1 -1 /dev/null elastic	
+}
 src_install() {
 	dodoc LICENSE.txt NOTICE.txt README.textile
 	dodir "${ES_INSTALL_DIR}"
@@ -34,5 +38,8 @@ src_install() {
 	insinto /etc/elasticsearch
 	doins config/elasticsearch.yml
 	doins config/logging.yml
-
+	dodir /run/elasticsearch
+	dodir /var/log/elasticsearch
+	fowners elastic:elastic /run/elasticsearch
+	fowners elastic:elastic /var/log/elasticsearch
 }
