@@ -29,6 +29,10 @@ checkconfig() {
 start() {
 	checkconfig || return 1
 	ebegin "Starting elasticsearch"
+	if [ ! -d "/var/run/elasticsearch" ]; then
+		mkdir -p /var/run/elasticsearch
+		chown elastic:elastic /var/run/elasticsearch
+	fi
 	if [ ! -d "$DATA_DIR" ]; then
 		mkdir -p $LOG_DIR $DATA_DIR $WORK_DIR
 		chown elastic:elastic $DATA_DIR
