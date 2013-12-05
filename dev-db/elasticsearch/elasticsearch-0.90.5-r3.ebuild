@@ -23,6 +23,8 @@ src_install() {
 	dodir "${ES_INSTALL_DIR}"
 	insinto "${ES_INSTALL_DIR}"
 	doins bin/elasticsearch.in.sh
+        into ${ES_INSTALL_DIR}
+        dobin bin/plugin
         insinto "${ES_INSTALL_DIR}"/bin
         dobin bin/elasticsearch
         insinto "${ES_INSTALL_DIR}"/lib
