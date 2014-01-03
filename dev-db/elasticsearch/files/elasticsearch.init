@@ -10,6 +10,7 @@ DAEMON_OPTS="$DAEMON_OPTS -Des.path.data=$DATA_DIR"
 DAEMON_OPTS="$DAEMON_OPTS -Des.path.work=$WORK_DIR"
 DAEMON_OPTS="$DAEMON_OPTS -Des.path.conf=$CONF_DIR"
 DAEMON_OPTS="$DAEMON_OPTS -Des.network.bind_host=$BIND"
+DAEMON_OPTS="$DAEMON_OPTS -Des.network.publish_host=$BIND"
 DAEMON_OPTS="$DAEMON_OPTS -Des.cluster.name=$CLUSTER"
 export ES_MIN_MEM
 export ES_MAX_MEM
