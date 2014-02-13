@@ -1,0 +1,57 @@
+#!/sbin/runscript
+# Copyright 1999-2004 Gentoo Foundation
+# Distributed under the terms of the GNU General Public License v2
+# $Header: /var/cvsroot/gentoo-x86/dev-db/mysql/files/mysql.init,v 1.7 2004/07/14 21:41:15 agriffis Exp $
+
+DAEMON_OPTS="-d -p $PID_FILE -Des.config=$CONFIG_FILE" 
+DAEMON_OPTS="$DAEMON_OPTS -Des.path.home=$ES_HOME"
+DAEMON_OPTS="$DAEMON_OPTS -Des.path.logs=$LOG_DIR"
+DAEMON_OPTS="$DAEMON_OPTS -Des.logging.console=false"
+DAEMON_OPTS="$DAEMON_OPTS -Des.path.data=$DATA_DIR"
+DAEMON_OPTS="$DAEMON_OPTS -Des.path.work=$WORK_DIR"
+DAEMON_OPTS="$DAEMON_OPTS -Des.path.conf=$CONF_DIR"
+DAEMON_OPTS="$DAEMON_OPTS -Des.network.bind_host=$BIND"
+DAEMON_OPTS="$DAEMON_OPTS -Des.network.publish_host=$BIND"
+DAEMON_OPTS="$DAEMON_OPTS -Des.cluster.name=$CLUSTER"
+if [ -n "${NNAME-}" ]; then 
+DAEMON_OPTS="$DAEMON_OPTS -Des.node.name=$NNAME"
+fi
+
+export ES_MIN_MEM
+export ES_MAX_MEM
+export ES_CLASSPATH=":/usr/share/elasticsearch/lib/elasticsearch-1.0.0.jar:/usr/share/elasticsearch/lib/*:/usr/share/elasticsearch/lib/sigar/*"
+
+depend() {
+	need net
+	use dns
+}
+
+checkconfig() {
+	if [ ! -f /etc/conf.d/elasticsearch ] ; then
+		eerror "No /etc/conf.d/elasticsearch file exists!"
+	fi
+}
+
+start() {
+	checkconfig || return 1
+	ebegin "Starting elasticsearch"
+	if [ ! -d "/var/run/elasticsearch" ]; then
+		mkdir -p /var/run/elasticsearch
+		chown elastic:elastic /var/run/elasticsearch
+	fi
+	if [ ! -d "$DATA_DIR" ]; then
+		mkdir -p $LOG_DIR $DATA_DIR $WORK_DIR
+		chown elastic:elastic $DATA_DIR
+		chown elastic:elastic $WORK_DIR
+		chown elastic:elastic $LOG_DIR
+	fi
+#echo " $DAEMON  $DAEMON_OPTS "	
+    	start-stop-daemon --start --pidfile $PID_FILE --user elastic --exec $DAEMON -- $DAEMON_OPTS 
+	eend $?
+}
+
+stop () {
+	ebegin "Stopping elasticsearch"
+	start-stop-daemon --stop --quiet --pidfile=$PID_FILE --retry 20
+	eend $?
+}

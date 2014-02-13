@@ -12,4 +12,3 @@ DATA_DIR=/var/lib/$NAME
 WORK_DIR=/tmp/$NAME
 CONF_DIR=/etc/elasticsearch
 CONFIG_FILE=/etc/$NAME/elasticsearch.yml
-DAEMON_OPTS="-p $PID_FILE"
