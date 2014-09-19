@@ -8,7 +8,7 @@ SRC_URI="http://download.elasticsearch.org/elasticsearch/elasticsearch/${P}.tar.
 
 SLOT="0"
 LICENSE="GPL-2"
-KEYWORDS="amd64 x86 amd64-linux x86-linux"
+KEYWORDS="~amd64 ~x86 ~amd64-linux ~x86-linux"
 IUSE=""
 
 RDEPEND=">=dev-java/icedtea-bin-7.2.4.7"
