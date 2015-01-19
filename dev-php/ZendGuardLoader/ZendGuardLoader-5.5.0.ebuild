@@ -2,7 +2,7 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-php5/ZendOptimizer/ZendOptimizer-3.3.9-r2.ebuild,v 1.1 2010/11/04 19:39:38 mabi Exp $
 
-EAPI="3"
+EAPI="5"
 
 PHP_EXT_ZENDEXT="yes"
 PHP_EXT_NAME="ZendGuardLoader"
