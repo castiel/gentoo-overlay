@@ -1,0 +1,25 @@
+--- a/lib/mail_catcher/web.rb
++++ b/lib/mail_catcher/web.rb
+@@ -17,11 +17,6 @@ class MailCatcher::Web < Sinatra::Base
+     haml :index
+   end
+ 
+-  delete '/' do
+-    MailCatcher.quit!
+-    status 204
+-  end
+-
+   get '/messages' do
+     if request.websocket?
+       request.websocket!(
+--- a/views/index.haml
++++ b/views/index.haml
+@@ -21,8 +21,6 @@
+             %input{:type => 'search', :name => 'search', :placeholder => 'Search messages...', :incremental => true}
+           %li.clear
+             %a{:href => '#', :title => 'Clear all messages'} Clear
+-          %li.quit
+-            %a{:href => '#', :title => 'Quit MailCatcher'} Quit
+     %nav#messages
+       %table
+         %thead
