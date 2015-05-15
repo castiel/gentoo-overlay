@@ -11,7 +11,7 @@ LICENSE="GPL-2"
 KEYWORDS="amd64 x86 amd64-linux x86-linux"
 IUSE=""
 
-RDEPEND=">=dev-java/icedtea-bin-7.2.4.7"
+RDEPEND=">=virtual/jre-1.7.0"
 ES_INSTALL_DIR="/usr/share/elasticsearch"
 
 pkg_setup() {

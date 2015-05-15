@@ -1,6 +1,6 @@
 EAPI=4
 
-inherit autotools eutils java-pkg-opt-2
+inherit autotools eutils java-pkg-opt-2 user
 
 DESCRIPTION="Elastic Search"
 HOMEPAGE="http://www.elasticsearch.org/"
@@ -11,7 +11,7 @@ LICENSE="GPL-2"
 KEYWORDS="amd64 x86 amd64-linux x86-linux"
 IUSE=""
 
-RDEPEND=" >=virtual/jre-1.6 "
+RDEPEND=">=virtual/jre-1.7.0"
 ES_INSTALL_DIR="/usr/share/elasticsearch"
 
 pkg_setup() {
@@ -33,7 +33,7 @@ src_install() {
 	doins lib/sigar/libsigar-x86-linux.so
 
 	newconfd ${FILESDIR}/elasticsearch.cnf elasticsearch
-	newinitd ${FILESDIR}/elasticsearch.init elasticsearch
+	newinitd ${FILESDIR}/${P}.init elasticsearch
 	doenvd ${FILESDIR}/70elastic
 	
 	dodir /etc/elasticsearch || die
