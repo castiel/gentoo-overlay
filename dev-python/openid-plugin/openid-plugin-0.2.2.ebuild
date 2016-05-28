@@ -2,7 +2,7 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-python/cosmolopy/cosmolopy-0.1.103.ebuild,v 1.1 2011/05/13 04:46:10 bicatali Exp $
 
-EAPI=2
+EAPI=5
 
 PYTHON_DEPEND="2"
 SUPPORT_PYTHON_ABIS="1"

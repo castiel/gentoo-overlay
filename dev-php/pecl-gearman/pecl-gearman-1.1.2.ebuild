@@ -7,7 +7,7 @@ PHP_EXT_NAME="gearman"
 PHP_EXT_INI="yes"
 PHP_EXT_ZENDEXT="no"
 
-USE_PHP="php5-3 php5-4"
+USE_PHP="php5-3 php5-4 php5-5"
 
 inherit php-ext-pecl-r2
 

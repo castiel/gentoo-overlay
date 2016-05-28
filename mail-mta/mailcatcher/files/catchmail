@@ -1,0 +1,8 @@
+#!/usr/bin/env ruby
+
+ENV['BUNDLE_GEMFILE'] = '@BASE_PATH@/Gemfile'
+
+require 'rubygems'
+require 'bundler/setup'
+
+load Gem.bin_path('mailcatcher', 'catchmail')

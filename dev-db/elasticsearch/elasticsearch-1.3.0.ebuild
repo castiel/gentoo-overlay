@@ -11,8 +11,7 @@ LICENSE="GPL-2"
 KEYWORDS="amd64 x86 amd64-linux x86-linux"
 IUSE=""
 
-RDEPEND=" >=virtual/jre-1.6 
-	>=dev-java/icedtea-bin-7.2.4.7"
+RDEPEND=" >=dev-java/oracle-jdk-bin-1.8.0.45"
 ES_INSTALL_DIR="/usr/share/elasticsearch"
 
 pkg_setup() {
